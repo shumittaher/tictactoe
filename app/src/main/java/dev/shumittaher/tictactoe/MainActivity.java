@@ -3,6 +3,8 @@ package dev.shumittaher.tictactoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -34,6 +36,20 @@ public class MainActivity extends AppCompatActivity {
         showStat = findViewById(R.id.tvGameStat);
         gameStatus = 1 ;
         runGame();
+
+        for (int z =0; z<9; z++ ){
+
+            buttons[z].setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.i("clicked", "button is clicked");
+                }
+            });
+
+
+
+        }
+
 
     }
 
