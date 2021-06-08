@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">tictactoe</string>
+    <string name="player_one_label">Player 1</string>
+    <string name="player_two_label">Player 2</string>
+    <string name="player_one_score">0</string>
+    <string name="player_two_score">0</string>
+
+</resources>
