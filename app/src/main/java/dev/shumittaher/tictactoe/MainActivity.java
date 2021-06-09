@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private int gameStatus, playerOneScore, playerTwoScore;
     TextView showStat;
@@ -39,17 +39,9 @@ public class MainActivity extends AppCompatActivity {
 
         for (int z =0; z<9; z++ ){
 
-            buttons[z].setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Log.i("clicked", "button is clicked");
-                }
-            });
-
-
+            buttons[z].setOnClickListener(this);
 
         }
-
 
     }
 
@@ -72,4 +64,12 @@ public class MainActivity extends AppCompatActivity {
 
 
         }
+
+    @Override
+    public void onClick(View v) {
+
+        Button button = (Button)v;
+        Log.i("hi","button clicked is: "+ button.getResources().getResourceEntryName(button.getId()));
+
     }
+}
