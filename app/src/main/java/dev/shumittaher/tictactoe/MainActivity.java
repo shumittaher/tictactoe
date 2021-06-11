@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         showStat = findViewById(R.id.tvGameStat);
         gameStatus = 1 ;
-        runGame();
+        updateGameStat(gameStatus);
 
         for (int z =0; z<9; z++ ){
 
@@ -45,31 +45,44 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void runGame() {
+    public void updateGameStat(int gameStatus) {
 
         if (gameStatus == 1) {
             showStat.setText("Player One to Move");
-            moveDetector();
         }
 
         if (gameStatus == 2) {
             showStat.setText("Player two to Move");
-            moveDetector();
         }
 
     }
 
-    public void moveDetector() {
-
-
-
-        }
 
     @Override
     public void onClick(View v) {
 
         Button button = (Button)v;
-        Log.i("hi","button clicked is: "+ button.getResources().getResourceEntryName(button.getId()));
+
+        int x = button.getResources().getResourceEntryName(button.getId()).charAt(1) - 48;
+        int y = button.getResources().getResourceEntryName(button.getId()).charAt(3) - 48;
+
+        switch (x) {
+
+            case 1:
+                new Players(gameStatus).x1++;
+
+            case 2:
+                new Players(gameStatus).x2++;
+
+            case 3:
+                new Players(gameStatus).x3++;
+
+        };
+
+
+        Log.i("status","_" + x);
+
+        Log.i("status","_" + new Players(gameStatus).x1);
 
     }
 }
