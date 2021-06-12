@@ -10,7 +10,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private int gameStatus, playerOneScore, playerTwoScore;
     TextView showStat;
     Button [] buttons = new Button [9];
     int z=0;
@@ -37,8 +36,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
         showStat = findViewById(R.id.tvGameStat);
-        gameStatus = 1 ;
-        updateGameStat(gameStatus);
+        activePlayer = player1;
+        updateGameStat();
+
+
 
         for (int z =0; z<9; z++ ){
 
@@ -48,16 +49,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public void updateGameStat(int gameStatus) {
+    private void changeGameStat() {
 
-        if (gameStatus == 1) {
-            showStat.setText("Player One to Move");
+        if (activePlayer == player2) {
             activePlayer = player1;
+            updateGameStat();
         }
 
-        if (gameStatus == 2) {
-            showStat.setText("Player two to Move");
+        if (activePlayer == player1) {
             activePlayer = player2;
+            updateGameStat();        }
+
+    }
+
+    public void updateGameStat() {
+
+        if (activePlayer == player1) {
+            showStat.setText("Player One to Move");
+        }
+
+        if (activePlayer == player2) {
+            showStat.setText("Player two to Move");
         }
 
     }
@@ -104,18 +116,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         };
 
-        Log.i("status","_" + player1.x1);
-        Log.i("status","_" + player1.x2);
-        Log.i("status","_" + player1.x3);
-        Log.i("status","_" + player1.y1);
-        Log.i("status","_" + player1.y2);
-        Log.i("status","_" + player1.y3);
-        Log.i("status","_" + player1.z1);
-        Log.i("status","_" + player1.z2);
-
-
+        winConditionChecker();
+        changeGameStat();
 
 
 
     }
+
+    private void winConditionChecker() {
+
+        if (activePlayer.x1 == 3) {
+
+        }
+
+    }
+
+
 }
