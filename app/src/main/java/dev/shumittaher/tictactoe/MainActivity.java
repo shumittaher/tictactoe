@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     TextView showStat;
     Button [] buttons = new Button [9];
     int z=0;
+    Players player1 = new Players(1);
+    Players player2 = new Players(2);
+    Players activePlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +52,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (gameStatus == 1) {
             showStat.setText("Player One to Move");
+            activePlayer = player1;
         }
 
         if (gameStatus == 2) {
             showStat.setText("Player two to Move");
+            activePlayer = player2;
         }
 
     }
@@ -69,20 +74,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (x) {
 
             case 1:
-                new Players(gameStatus).x1++;
+                activePlayer.x1++;
+                if (y==1) {activePlayer.z1++;}
+                if (y==3) {activePlayer.z2++;}
 
             case 2:
-                new Players(gameStatus).x2++;
+                activePlayer.x2++;
+                if (y==2) {
+                    activePlayer.z1++;
+                    activePlayer.z2++;
+                }
 
             case 3:
-                new Players(gameStatus).x3++;
+                activePlayer.x3++;
+                if (y==3) {activePlayer.z1++;}
+                if (y==1) {activePlayer.z2++;}
+
+        };
+        switch (y) {
+
+            case 1:
+                activePlayer.y1++;
+
+            case 2:
+                activePlayer.y2++;
+
+            case 3:
+                activePlayer.y3++;
 
         };
 
+        Log.i("status","_" + player1.x1);
+        Log.i("status","_" + player1.x2);
+        Log.i("status","_" + player1.x3);
+        Log.i("status","_" + player1.y1);
+        Log.i("status","_" + player1.y2);
+        Log.i("status","_" + player1.y3);
+        Log.i("status","_" + player1.z1);
+        Log.i("status","_" + player1.z2);
 
-        Log.i("status","_" + x);
 
-        Log.i("status","_" + new Players(gameStatus).x1);
+
+
 
     }
 }
